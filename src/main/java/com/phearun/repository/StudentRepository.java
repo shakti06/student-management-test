@@ -18,4 +18,6 @@ public interface StudentRepository {
 	boolean save(Student student);
 
 	boolean update(Student student);
+	
+	long count();
 }

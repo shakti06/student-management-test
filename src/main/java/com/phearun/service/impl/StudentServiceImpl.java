@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService{
 
 	@Override
 	public List<Student> findAll(Paging paging) {
-		paging.setTotalCount(10L);
+		paging.setTotalCount(studentRepository.count());
 		return studentRepository.findAll(paging);
 	}
 

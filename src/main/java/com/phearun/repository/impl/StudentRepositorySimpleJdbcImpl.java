@@ -47,4 +47,10 @@ public class StudentRepositorySimpleJdbcImpl implements StudentRepository{
 		return false;
 	}
 
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

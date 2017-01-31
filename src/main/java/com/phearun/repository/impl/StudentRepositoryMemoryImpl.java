@@ -32,9 +32,14 @@ public class StudentRepositoryMemoryImpl implements StudentRepository{
 	public List<Student> findAll(Paging paging) {
 		List<Student> studentss = new ArrayList<>();
 
-		List<Student> students = this.findAll();
-		if ((paging.getOffset() + paging.getLimit()) <= students.size() && paging.getPage() > 0) {
-			for (int i = paging.getOffset(); i < (paging.getOffset() + paging.getLimit()); i++) {
+		int startIndex = paging.getOffset();
+		int endIndex = paging.getOffset() + paging.getLimit();
+		
+		if (endIndex > students.size())
+			endIndex = students.size();
+		
+		if(paging.getPage() > 0){
+			for(int i=startIndex; i<endIndex; i++){
 				studentss.add(students.get(i));
 			}
 		}
@@ -73,6 +78,11 @@ public class StudentRepositoryMemoryImpl implements StudentRepository{
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public long count() {
+		return students.size();
 	}
 
 }
