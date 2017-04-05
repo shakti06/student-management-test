@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.gregwhitaker.catnap.springboot.annotation.CatnapResponseBody;
 import com.phearun.model.Student;
 import com.phearun.service.StudentService;
 import com.phearun.utility.Paging;
@@ -31,6 +32,19 @@ public class StudentController {
 		return new ResponseEntity<List<Student>>(students, HttpStatus.OK);
 	} 
 	
+	@RequestMapping(value = "/lst", method = RequestMethod.GET)
+	//@CatnapResponseBody
+	public List<Student> find(){
+		List<Student> students = studentService.findAll();
+		return students;
+	} 
+	
+	@RequestMapping(value = "/one/{id}", method = RequestMethod.GET)
+	//@CatnapResponseBody
+	public Student findO(@PathVariable("id") int id){
+		Student student = studentService.findOne(id);
+		return student;
+	} 
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> findAll(Paging paging){
@@ -72,6 +86,19 @@ public class StudentController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	} 
 
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> save(@RequestBody Student student){
+		
+		System.out.println("=>>" + student);
+		Map<String, Object> response = new HashMap<>();
+		boolean status = studentService.save(student);
+		response.put("STATUS", status);		
+		if(status)
+			response.put("MESSAGE", "Operation Succeed!");
+		else
+			response.put("MESSAGE", "Operation Failed!");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	} 
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String, Object>> remove(@PathVariable("id") int id){
