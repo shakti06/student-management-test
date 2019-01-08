@@ -20,6 +20,7 @@ public class StudentServiceImpl implements StudentService{
 	
 	@Override
 	public List<Student> findAll() {
+
 		return studentRepository.findAll();
 	}
 

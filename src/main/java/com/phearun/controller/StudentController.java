@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.gregwhitaker.catnap.springboot.annotation.CatnapResponseBody;
 import com.phearun.model.Student;
 import com.phearun.service.StudentService;
 import com.phearun.utility.Paging;
