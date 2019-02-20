@@ -1,2 +1,5 @@
-"# student-management-test" 
-"# studentmangment-test" 
+## Tools used in test
+
+ - Junit 4
+ 
+ - Hamcrest
